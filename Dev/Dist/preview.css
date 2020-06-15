@@ -1,0 +1,75 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url(../Images/flowers-2.png);
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+   
+  }
+
+  .container{
+    /* border: 2px solid #000000; */
+     box-shadow: 15px 15px 15px 15px rgba(0, 0, 0,.5); 
+     height: 150vh;
+     background: rgba(255, 255, 255, 0.2);
+     padding-top: 4%;
+     margin-right: -5%;
+    margin-top: 15%;
+    position: relative
+    
+ }
+ .btn-1{
+    position: absolute;
+     left: -20px;
+     bottom: 113px;
+     background: rgba(260, 260, 260, .5);
+
+}
+
+.btn-2{
+   position: absolute;
+    left: -35px;
+    bottom: 113px;
+    background-color: black;
+
+}
+.container-paper{
+    background-color: white;
+    width: 595px;
+    height: 842px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+  }
+  .resultat{
+      font-weight: 900;
+      text-decoration: underline;
+      padding-left: 30px;
+      padding-top: 10px;
+  }
+  .logo-img{
+      float: right;
+      border: 1px solid black;
+      margin: 10px;
+  }
+  .info{
+      list-style: none;
+      font-size: 15px;
+  }

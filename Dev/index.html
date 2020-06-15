@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./Dist/main.css">
+    <!--  -->
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <!--  -->
+
+    <title>Document</title>
+</head>
+<body>
+   <!-- ------------------------------------------------------ -->
+  <section class="blur">
+    <div class="container mt-5 col-lg-9" class="floue">
+        <h1 class="display-4 text-center font-weight-bold pb-2" >Client Information </h1>
+        <div class="container-form pt-2">
+            <form class="inputs">
+       <!-- Material input -->
+       <div class="md-form">
+        <input type="text" id="agencyName" class="form-control col-6 text-dark" placeholder="Agency Name">
+      </div>
+  
+        <!-- Material form grid -->
+
+    <!-- Grid row -->
+    <div class="row">
+      <!-- Grid column -->
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input type="text" id="firstName" class="form-control col-8 mr-0" placeholder="First name">
+        </div>
+      </div>
+      <!-- Grid column -->
+  
+      <!-- Grid column -->
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input type="text" id="lastName" class="form-control col-8 mr-5" placeholder="Last name">
+        </div>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+     <!-- Material input -->
+     <div class="md-form mt-0">
+        <input type="text" id="Nchambre" class="form-control col-6" placeholder="N° de Chambre">
+      </div>
+       <!-- Material input -->
+       <div class="md-form mt-0">
+        <input type="date" id="arrivee" class="form-control col-6" id="datetimepicker3" placeholder="Date D'arrivée">
+      </div>
+       <!-- Material input -->
+       <div class="md-form mt-0">
+       <input type="date" id="depart" class="form-control col-6"  placeholder="Date Depart">
+      </div>
+
+
+        </div>
+    </div>
+    <!-- Grid row --> 
+</div>
+        </div>
+    </div>
+  </form>
+  <!-- Material form grid -->
+   </div>
+   <button type="submit" id="submet" class="btn btn-primary float-right mt-5><a class="text-white" href="facture.html">Save and Next</a></button>
+</section>
+    <!-- ----------------------------------------------- -->
+<script>
+  $(function(){
+     $('#submet').click(function(){
+       var agency = $('#agencyName').val();
+        var lname = $('#lastName').val();  
+       var ndc = $('#Nchambre').val();
+       var dateArr = $('#arrivee').val();
+       var dateDep = $('#depart').val();
+      localStorage.setItem('getvalue', agency);
+       localStorage.setItem('getvalue2', lname);
+       localStorage.setItem('getvalue3', ndc);
+       localStorage.setItem('getvalue4',dateArr);
+       localStorage.setItem('getvalue5',dateDep);
+       
+      
+       window.location.href="facture.html";
+     });
+  });
+</script>
+    <!--  -->
+
+        <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+    <!--  -->
+<script src="app.js"></script>
+<script src="printThis.js"></script>
+</body>
+</html>

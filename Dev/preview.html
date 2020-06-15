@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Dist/preview.css">
+    
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <!--  -->
+    
+    <title>Preview</title>
+</head>
+<body>
+    <div class="container mt-8 justify-content-center">
+        <button type="button" class="btn btn-1 bg-white font-weight-bold border-bottom-0"><a href="facture.html">Prestation</a></button>
+        <button type="button" class="btn btn-2 font-weight-bold border-bottom-0">Preview</button>
+        <div class="container-paper">
+            <div class="logo-img">
+                <img src="" alt="logo">
+            </div>
+            <h1 class=" text-center pt-5 mb-5 ">Facture N°<span id="random"></span><span id="date"></span></h1>
+           <ul class="info">
+               <li>Nom Client              : <span id="client"></span></li>
+               <li> Référence              : Mr <span id="reference"></span></li>
+               <li> N° de Chambre          : <span id="chambre"></span></li>
+               <li> Date d'arrivée         : <span id="arr"></span></li>
+               <li> Date depart            : <span id="dep"></span></li>
+               <li>N° Dossier              : <span id="dossier"></span></li>
+           </ul>
+             <table>
+                 <tr>
+                     <td>Date</td>
+                     <td>Prestation</td>
+                     <td>Prix</td>
+                     <td>Quantité</td>
+                     <td>Total</td>
+                 </tr>
+                 <tr>
+                     <td><span id="dat"></span></td>
+                     <td><span id="prestation"></span></td>
+                     <td><span id="prix"></span></td>
+                     <td><span id="qte"></span></td>
+                     <td><span id="total"></span></td>
+                 </tr>
+                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"> Dont la TVA 10% : <span></span></td>
+                    <td colspan="2">Total TTC</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"> Taxe (TPT)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="3"> Total</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+             </table>
+             <p class="resultat">Arrêtée la présente facture à la somme de :</p>
+             <p id="output"></p>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary float-right mr-5 mt-5 mb-4" id="print" onclick="window.print()">Print</button>
+    <button type="button" class="btn btn-primary float-left ml-5 mt-5 mb-4" id="print"><a class="text-white" href="index.html">previous</a> </button>
+
+    
+  
+    <script>
+        document.getElementById("client").innerHTML=localStorage.getItem("getvalue");
+        document.getElementById("reference").innerHTML=localStorage.getItem("getvalue2");
+        document.getElementById("chambre").innerHTML=localStorage.getItem("getvalue3");
+        document.getElementById("arr").innerHTML=localStorage.getItem("getvalue4");
+        document.getElementById("dep").innerHTML=localStorage.getItem("getvalue5");
+        document.getElementById("date").innerHTML=localStorage.getItem("getvalue5");
+        document.getElementById("dat").innerHTML=localStorage.getItem("getvalue6");
+        document.getElementById("prix").innerHTML=localStorage.getItem("getvalue7");
+        document.getElementById("qt").innerHTML=localStorage.getItem("getvalue8");
+        document.getElementById("total").innerHTML=localStorage.getItem("getvalue9");
+
+    </script>
+
+
+<!-- ------ -->
+
+<!-- ------- -->
+
+  <script src="printThis.js"></script>
+  <script src="app.js"></script>
+            <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+    <!--  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>

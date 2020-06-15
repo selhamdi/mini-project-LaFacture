@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./Dist/Facture.css">
+    <!--  -->
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <!--  -->
+    <title>Document</title>
+    <style>
+      .text{ display: flex; margin-right: 20px; 
+       }  .text p{    text-decoration: none;    margin-left: 80px;    }
+    </style>
+</head>
+<body>
+    
+   <div class="container mt-8">
+    <button type="button" class="btn btn-1 font-weight-bold border-bottom-0">Prestation</button>
+    <button type="button" class="btn btn-2 bg-white font-weight-bold border-bottom-0"><a href="preview.html">Preview</a> </button>
+    <form class="d-flex justify-content-center">
+    <div class="md-form">
+      <div class="text">         <div> <p>La Date</p></div>         <div> <p>Prix</p> </div>         <div> <p>Quantité</p> </div>         <div> <p>Total</p> </div>     </div>
+  <!-- <div>
+        <p style="width:262px;">La Date</p>
+        <p style="width:70px;;">Prix U HT</p>
+        <p style="width:50px; ;">Qté</p>
+        <p style="width:70px;border-right:1px solid #808080;">Total</p>
+  </div>
+        -->
+        <p style="margin:0; border:0 solid black; height:30px; height:30px;"><input type="button" onclick="calcul()" style="margin:0 0 0 3px; width:136px; height:30px;" value="Calculer" /></p>
+        <div id="ligneCalcul" style="clear:both">
+          <p>
+            <input type="date" id="ChampDesign_0" value="" style="width:290px; text-align:left;" />
+            <input type="text" id="ChampTarifHT_0" value="0.00" style="width:60px;" onchange="calcul()" />
+            <input type="text" id="ChampQte_0" value="1.00" style="width:40px;" onchange="calcul()" />
+            <input type="text" id="ChampResult_0" style="width:60px;" />&nbsp;
+            <input type="button" value="Suppr." onclick="delLine(0)" class="Button"/>
+          </p>
+          <p>
+            <input type="date" id="ChampDesign_1" value="" style="width:290px; text-align:left;" />
+            <input type="text" id="ChampTarifHT_1" value="0.00" style="width:60px;" onchange="calcul()" />
+            <input type="text" id="ChampQte_1" value="1.00" style="width:40px;" onchange="calcul()" />
+            <input type="text" id="ChampResult_1" style="width:60px;" />&nbsp;
+            <input type="button" value="Suppr." onclick="delLine(1)" class="Button"/>&nbsp;
+            <input type="button" value="Ajouter" onclick="addLine()" class="Button"/>
+          </p>
+        </div>
+
+        <div id="Total">
+          <p>Total HT : <input type="text" id="valueTotalHT" value="0" /></p>
+          <p>TVA (%) : <input type="text" id="valueTVA" value="19.60" /></p>
+          <p style="float:right; margin:0; vertical-align:absmiddle;"><input type="button" onclick="calcul()" style="margin-left:7px; width:136px; height:30px; text-align:center;" value="Calculer" /></p>
+          <p style="float:right; margin:0; vertical-align:absmiddle;">Total TTC : <input type="text" id="valueTotalTTC" value="0" /></p>
+          <div style="clear:both;"></div>
+         
+        </div>
+        
+      </div>
+    </form>
+
+        <!-- <div class="increse"> -->
+      
+   </div>
+
+   <button type="submit" id="submet" class="btn btn-primary float-right mt-5"> <a class=" text-white"  href="preview.html">Save and Next</a></button>
+      
+   
+   <script>
+    function Ident(Obj){ return (document.all)?document.all[Obj]:document.getElementById(Obj); } // Identification d'objet lib_js_1
+ 
+ function findNbChamp(){ var a=0; while(ChampDesign=Ident('ChampDesign_'+a)){ a++; } return a; } // Trouve le nombre de champs à calculer
+ 
+ function formatChamp(nombre){ // Retourne le nombre au format 2 chiffres après la virgule
+   var num_string=Math.abs(Math.round(nombre*100)).toString(); 
+   var moin=nombre<0?"-":""; 
+   var pos=num_string.length-2; 
+   var chiffre="."+num_string.substr(pos); 
+   if(nombre==0) return "0.00"; 
+   if(nombre > -1 && nombre < 1) return moin+"0"+chiffre; 
+   while(pos>3){ pos=pos-3; chiffre=","+num_string.substr(pos,3)+chiffre; } 
+   return moin+num_string.substring(0,pos)+chiffre;
+ }
+ 
+ function calcul(){ // Calucule Les valeurs
+   // Définition des variables
+   var a=0, b=findNbChamp(), valueSousTotal=0;
+   var valueTotalHT=Ident('valueTotalHT'), valueTVA=Ident('valueTVA'), valueTotalTTC=Ident('valueTotalTTC');
+   var ChampTarifHT, ChampQte, ChampResult;
+   for(a; a<b; a++){
+     ChampTarifHT=Ident('ChampTarifHT_'+a).value;
+       Ident('ChampTarifHT_'+a).value=formatChamp(ChampTarifHT);
+     ChampQte=Ident('ChampQte_'+a).value;
+       Ident('ChampQte_'+a).value=formatChamp(ChampQte);
+     ChampResult=Ident('ChampResult_'+a);
+     ChampResult.value=formatChamp(ChampTarifHT*ChampQte);
+     valueSousTotal=valueSousTotal + (ChampTarifHT*ChampQte);
+   }
+   valueTotalHT.value=formatChamp(valueSousTotal);
+   valueTotalTTC.value=formatChamp(valueTotalHT.value*(1+(valueTVA.value/100)));
+ }
+ 
+ function delLine(where){ // Fonction de suppression de ligne
+   var a=0, b=findNbChamp(), c='', d='', e=0;
+   var ChampDesign, ChampTarifHT, ChampQte, ChampResult;
+   
+   for(a; a<b; a++){
+     ChampDesign=Ident('ChampDesign_'+a).value;
+     ChampTarifHT=Ident('ChampTarifHT_'+a).value;
+     ChampQte=Ident('ChampQte_'+a).value;
+     ChampResult=Ident('ChampResult_'+a).value;
+     if(a!=where){
+       c='<input type="date" id="ChampDesign_'+e+'" value="'+ChampDesign+'" style="width:290px; text-align:left;" />'+"\n";
+       c+='<input type="text" id="ChampTarifHT_'+e+'" value="'+ChampTarifHT+'" style="width:60px;" onchange="calcul()" />'+"\n";
+       c+='<input type="text" id="ChampQte_'+e+'" value="'+ChampQte+'" style="width:40px;" onchange="calcul()" />'+"\n";
+       c+='<input type="text" id="ChampResult_'+e+'" value="'+ChampResult+'" style="width:60px;" />&nbsp;'+"\n";
+       if(a==b-1 || e==b-2){
+         c+='<input type="button" value="Suppr." onclick="delLine('+e+')" class="Button" style="background-color: ;" />&nbsp;'+"\n";
+         c+='<input type="button" value="Ajouter" onclick="addLine()" class="Button"  style="background-color: ;" />';
+       }else{
+         c+='<input type="button" value="Suppr." onclick="delLine('+e+')" class="Button"style="background-color: ;"  />&nbsp;'+"\n";
+       }
+       d+='<p>'+"\n"+c+"\n"+'</p>'+"\n";
+       e++;
+     }else{
+       e=a;
+     }
+   }
+   Ident('ligneCalcul').innerHTML=d;
+   calcul();
+ }
+ 
+ function addLine(where){ // Fonction d'ajout de ligne
+   var a=0, b=findNbChamp(), c='', d='';
+   var ChampDesign, ChampTarifHT, ChampQte, ChampResult;
+   
+   for(a; a<b; a++){
+     ChampDesign=Ident('ChampDesign_'+a).value;
+     ChampTarifHT=Ident('ChampTarifHT_'+a).value;
+     ChampQte=Ident('ChampQte_'+a).value;
+     ChampResult=Ident('ChampResult_'+a).value;
+ 
+     c='<input type="date" id="ChampDesign_'+a+'" value="'+ChampDesign+'" style="width:290px; text-align:left;" />'+"\n";
+     c+='<input type="text" id="ChampTarifHT_'+a+'" value="'+ChampTarifHT+'" style="width:60px;" onchange="calcul()" />'+"\n";
+     c+='<input type="text" id="ChampQte_'+a+'" value="'+ChampQte+'" style="width:40px;" onchange="calcul()" />'+"\n";
+     c+='<input type="text" id="ChampResult_'+a+'" value="'+ChampResult+'" style="width:60px;" />&nbsp;'+"\n";
+     c+='<input type="button" value="Suppr." onclick="delLine('+a+')" class="Button";"  />&nbsp;'+"\n";
+     d+='<p>'+"\n"+c+"\n"+'</p>'+"\n";
+   }
+ 
+   c='';
+   c+='<input type="date" id="ChampDesign_'+a+'" value="" style="width:290px; text-align:left;" />'+"\n";
+   c+='<input type="text" id="ChampTarifHT_'+a+'" value="0.00" style="width:60px;" onchange="calcul()" />'+"\n";
+   c+='<input type="text" id="ChampQte_'+a+'" value="1.00" style="width:40px;" onchange="calcul()" />'+"\n";
+   c+='<input type="text" id="ChampResult_'+a+'" value="0.00" style="width:60px;" />&nbsp;'+"\n";
+   c+='<input type="button" value="Suppr." onclick="delLine('+a+')" class="Button" />&nbsp;'+"\n";
+   c+='<input type="button" value="Ajouter" onclick="addLine()" class="Button" style="background-color:;"  />';
+   d+='<p>'+"\n"+c+"\n"+'</p>'+"\n";
+   
+   Ident('ligneCalcul').innerHTML=d;
+   calcul();
+ }
+       
+      </script>
+
+
+
+    
+        <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+    <!--  -->
+  
+    <script>
+      $('#print').click(function(){
+          $('.container-paper').printThis();
+      })
+  </script>
+  <script src="printThis.js"></script>
+</body>
+</html>
